@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Game</title>
-    <!-- Link to your CSS stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
 </head>
@@ -20,11 +19,19 @@
         <div id="game-board">
             <!-- The game board where colored buttons will be displayed -->
             <!-- Each button should have an ID or class for identification -->
+            <div>
+                <div class="panel top-left"></div>
+                <div class="panel top-right"></div>
+            </div>
+            <div>
+                <div class="panel bottom-left"></div>
+                <div class="panel bottom-right"></div>
+            </div>
+            <div class="game-brand"></div>  
         </div>
         <div id="controls">
             <!-- Control buttons such as Start, Reset, or Settings can be placed here -->
             <button id="start-btn">Start</button>
-            <button id="reset-btn">Reset</button>
             <!-- Additional buttons or controls can be added as needed -->
         </div>
     </main>
@@ -32,9 +39,7 @@
     <!-- Footer section -->
     <footer>
         <!-- Additional information or credits can be placed here -->
-        <p>&copy; 2024 Simon Game Company</p>
+        <p>&copy; Demmy's Web Game Inc</p>
     </footer>
-
-    <!-- Link to your JavaScript file -->
 </body>
 </html>

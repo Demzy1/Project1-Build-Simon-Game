@@ -1,14 +1,7 @@
-/* Reset default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: black;
+    text-align: center;
 }
 
 /* Header styles */
@@ -18,44 +11,56 @@ header {
     text-align: center;
     padding: 20px 0;
 }
-
-/* Main styles */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-}
-
-/* Game board styles */
-#game-board {
-    display: grid;
-    grid-template-columns: repeat(2, 100px);
-    gap: 10px;
-}
-
-.game-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+/* Panel styles */
+.panel {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 20px;
     cursor: pointer;
 }
+/* Game Brand/Logo Styles */
+.game-brand{
+    background-color: black;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: -360px;
+    margin-left: -125px;
+    position: absolute;
+}
 
-#green {
+/* Hover effect for panels */
+.panel:hover {
+    box-shadow: inset 0px 0px 0px 3px rgb(40, 22, 33);
+    box-sizing: border-box;
+}
+
+/* Corner panel styles */
+.top-left {
     background-color: green;
+    border-top-left-radius: 20%;
 }
 
-#red {
-    background-color: red;
-}
-
-#yellow {
+.top-right {
     background-color: yellow;
+    border-top-right-radius: 20%;
 }
 
-#blue {
+.bottom-left {
     background-color: blue;
+    border-bottom-left-radius: 20%;
+}
+
+.bottom-right {
+    background-color: red;
+    border-bottom-right-radius: 20%;
+}
+
+/* Active panel style */
+.active {
+    background-color: aquamarine;
 }
 
 /* Controls styles */
