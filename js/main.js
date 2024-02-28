@@ -9,7 +9,9 @@ const panels = [topLeft, topRight, bottomLeft, bottomRight];
 
 // Initialize computer sequence with a random panel
 const computerSequence = [getRandomPanel()];
-let guessedSequence = [...computerSequence]
+let guessedSequence = [...computerSequence];
+let canClick = false;
+let score = 0;
 
 // Function to get a random panel from the array
 function getRandomPanel() {
@@ -29,34 +31,53 @@ function flash(panel) {
     });
 }
 
-let canClick = false;
-function clicked (clicked){
+// Function to handle panel clicks by the user
+function clicked(clicked) {
     if (!canClick) return;
     const truePanel = guessedSequence.shift();
-    if (truePanel === clicked){
-        if (guessedSequence.length === 0){
-            //start new round
+    if (truePanel === clicked) {
+        if (guessedSequence.length === 0) {
+            // Start new round
+            score++; // Increase the score after each successful round
+            const scoreText = document.querySelector('#score-text');
+            scoreText.textContent = `Score: ${score}`;
             computerSequence.push(getRandomPanel());
             guessedSequence = [...computerSequence];
-            flashing()
+            flashing();
         }
     } else {
-        //end game
-        alert('Game Over')
+        // End game
+        const gameBrand = document.querySelector('.game-brand');
+        gameBrand.innerHTML = '<p id="end-game-text">Game Over</p>';
+        score = 0; // Reset the score when the game ends
+        const scoreText = document.querySelector('#score-text');
+        scoreText.textContent = `Score: ${score}`;
     }
 }
 
 // Main function to iterate through computer sequence and flash panels
-async function flashing (){
+async function flashing() {
+    canClick = false; // Prevent user clicks during computer sequence flashing
     for (const panel of computerSequence) {
         await flash(panel); // Flash each panel in sequence
     }
-    canClick = true;
+    canClick = true; // Allow user clicks after computer sequence flashing
 }
-flashing();
 
-// Allow users to click on the panels to mimic the computer's sequence.
-// Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
+// Function to start the game
+function startGame() {
+    flashing(); // Start the initial sequence flashing
+}
+
+// Get the start button element
+const startButton = document.getElementById('start-btn');
+
+// Add event listener to the start button
+startButton.addEventListener('click', startGame);
+
+
+//*// Allow users to click on the panels to mimic the computer's sequence.
+//*// Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
 // Score Tracking: Keep track of the player's score based on the number of successful rounds completed.
 // Increment Difficulty: Increase the difficulty as the player progresses by adding more panels to the sequence or decreasing the time between flashes.
 // Game Over Handling: Implement logic to handle game over scenarios, such as when the player makes a mistake.
