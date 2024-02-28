@@ -65,16 +65,22 @@ async function flashing() {
 }
 
 // Function to start the game
-function startGame() {
-    flashing(); // Start the initial sequence flashing
+function startGame() {  
+    flashing();
 }
-
 // Get the start button element
 const startButton = document.getElementById('start-btn');
 
 // Add event listener to the start button
 startButton.addEventListener('click', startGame);
 
+// Get the reset button element
+const resetButton = document.getElementById('reset-btn');
+
+// Add event listener to the reset button
+resetButton.addEventListener('click', function() {
+    location.reload(); // Reload the page to restart the game
+});
 
 //*// Allow users to click on the panels to mimic the computer's sequence.
 //*// Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
