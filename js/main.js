@@ -9,6 +9,7 @@ const panels = [topLeft, topRight, bottomLeft, bottomRight];
 
 // Initialize computer sequence with a random panel
 const computerSequence = [getRandomPanel()];
+let guessedSequence = [...computerSequence]
 
 // Function to get a random panel from the array
 function getRandomPanel() {
@@ -29,12 +30,15 @@ function flash(panel) {
 }
 
 let canClick = false;
-function clicked (panelClicked){
+function clicked (clicked){
     if (!canClick) return;
     const truePanel = guessedSequence.shift();
-    if (truePanel === panelClicked){
+    if (truePanel === clicked){
         if (guessedSequence.length === 0){
             //start new round
+            computerSequence.push(getRandomPanel());
+            guessedSequence = [...computerSequence];
+            flashing()
         }
     } else {
         //end game
@@ -43,13 +47,13 @@ function clicked (panelClicked){
 }
 
 // Main function to iterate through computer sequence and flash panels
-async function main() {
+async function flashing (){
     for (const panel of computerSequence) {
         await flash(panel); // Flash each panel in sequence
     }
     canClick = true;
 }
-main();
+flashing();
 
 // Allow users to click on the panels to mimic the computer's sequence.
 // Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
