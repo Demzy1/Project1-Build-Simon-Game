@@ -1,15 +1,20 @@
 /* Body styles */
 body {
-    background-color: black;
+    background-image: url("/pics/lagos.jpg");
     text-align: center;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Header styles */
 header {
-    background-color: #333;
+    background:-webkit-linear-gradient(bottom, rgba(0,0,0,.4), rgba(0,0,0,.3));
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 2px 0;
+    font-family: "Black Ops One", system-ui;
+    font-size: 20px;
 }
 /* Panel styles */
 .panel {
@@ -21,7 +26,7 @@ header {
 }
 /* Game Brand/Logo Styles */
 .game-brand{
-    background-color: black;
+    background:black;
     width: 250px;
     height: 250px;
     border-radius: 50%;
@@ -78,7 +83,7 @@ button {
 
 /* Footer styles */
 footer {
-    background-color: #333;
+    background:-webkit-linear-gradient(bottom, rgba(0,0,0,.4), rgba(0,0,0,.3));
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -88,7 +93,7 @@ footer {
 #score-text {
     font-size: 18px;
     position: absolute;
-    top: 40%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -101,4 +106,11 @@ footer {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+#game-board {
+    background-color: black;
+    width: 500px; /* Adjust width as needed */
+    margin: 0 auto; /* This will center the game board horizontally */
+    text-align: center; /* Optional: to center inline content within the game board */
+    margin-top: 20px;
 }
