@@ -29,13 +29,14 @@ function getRandomPanel() {
 // Function to flash a panel in the sequence
 function flash(panel) {
     return new Promise(function(resolve, reject) {
-        panel.className += 'active'; // Add 'active' class to panel
+        const originalColor = panel.style.backgroundColor; // Store the original color
+        panel.style.backgroundColor = 'aquamarine'; // Change to the flashing color
         setTimeout(function() {
-            panel.className = panel.className.replace('active', ''); // Remove 'active' class
+            panel.style.backgroundColor = originalColor; // Restore the original color
             setTimeout(function() {
                 resolve(); // Resolve promise after short delay
-            }, 1000);
-        }, 1000); // Flash panel for 1 second
+            }, 100); // Delay before restoring the original color
+        }, 700); // Flash panel for 0.7 seconds
     });
 }
 
