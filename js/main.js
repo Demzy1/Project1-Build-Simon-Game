@@ -25,6 +25,11 @@ const panelSounds = {
 function getRandomPanel() {
     return panels[Math.floor(Math.random() * panels.length)];
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Promises in JavaScript are used to handle asynchronous operations, providing a cleaner and 
+// more organized way to work with asynchronous code. In my game, promises are 
+// employed to manage the asynchronous flashing of panels. Instead of flashing them all at once
+// and causing confusion, promises ensure they flash one after the other. 
 
 // Function to flash a panel in the sequence
 function flash(panel) {
@@ -35,10 +40,13 @@ function flash(panel) {
             panel.style.backgroundColor = originalColor; // Restore the original color
             setTimeout(function() {
                 resolve(); // Resolve promise after short delay
-            }, 100); // Delay before restoring the original color
+            }, 500); // Delay before restoring the original color
         }, 700); // Flash panel for 0.7 seconds
     });
 }
+// Refrence:MozDevNet. (n.d.). Promise - javascript: MDN. MDN Web Docs.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to handle panel clicks by the user
 function clicked(clicked) {
@@ -115,13 +123,4 @@ resetButton.addEventListener('click', function() {
     location.reload(); // Reload the page to restart the game
 });
 
-//*// Allow users to click on the panels to mimic the computer's sequence.
-//*// Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
-//*// Score Tracking: Keep track of the player's score based on the number of successful rounds completed.
-//*// Increment Difficulty: Increase the difficulty as the player progresses by adding more panels to the sequence or decreasing the time between flashes.
-//*// Game Over Handling: Implement logic to handle game over scenarios, such as when the player makes a mistake.
-//*// Restart Game: Provide an option for the player to restart the game after it ends.
-//*// Visual Feedback: Add visual feedback to indicate when the player's input is correct or incorrect.
-// Sound Effects: Include sound effects for each panel flash and for game events such as correct or incorrect inputs.
-// Game Instructions: Display instructions or a tutorial to guide players on how to play the game.
-// Responsive Design: Ensure the game interface is responsive and works well on different devices and screen sizes.
+
