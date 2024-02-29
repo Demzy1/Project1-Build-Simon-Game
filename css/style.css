@@ -114,3 +114,15 @@ footer {
     text-align: center; /* Optional: to center inline content within the game board */
     margin-top: 20px;
 }
+#start-btn {
+    background-color: black;
+    color: white;
+}
+#reset-btn {
+    background-color: black;
+    color: white; 
+}
+.clicked {
+        opacity: 0.5; 
+}
+

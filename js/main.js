@@ -48,16 +48,29 @@ function clicked(clicked) {
     const panelId = clicked.classList[1]; // Assuming the class name is the panel ID
     panelSounds[panelId].play();
 
+    // Add visual feedback to signify the button has been clicked
+    clicked.classList.add('clicked');
+
+    // Remove visual feedback after a delay
+    setTimeout(() => {
+        clicked.classList.remove('clicked');
+    }, 500); // Adjust the delay time as needed
+
     const truePanel = guessedSequence.shift();
     if (truePanel === clicked) {
         if (guessedSequence.length === 0) {
-            // Start new round
+            // Start new round after a delay
             score++; // Increase the score after each successful round
             const scoreText = document.querySelector('#score-text');
             scoreText.textContent = `Score: ${score}`;
-            computerSequence.push(getRandomPanel());
-            guessedSequence = [...computerSequence];
-            flashing();
+
+            // Clear visual feedback after a delay
+            setTimeout(() => {
+                panels.forEach(panel => panel.classList.remove('clicked'));
+                computerSequence.push(getRandomPanel());
+                guessedSequence = [...computerSequence];
+                flashing();
+            }, 1000); // Adjust the delay time as needed
         }
     } else {
         // End game
@@ -71,6 +84,8 @@ function clicked(clicked) {
         startButton.addEventListener('click', startGame); // Add event listener to restart the game
     }
 }
+
+
 
 // Main function to iterate through computer sequence and flash panels
 async function flashing() {
