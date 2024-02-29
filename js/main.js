@@ -13,6 +13,14 @@ let guessedSequence = [...computerSequence];
 let canClick = false;
 let score = 0;
 
+// Define sounds for each panel
+const panelSounds = {
+    'top-left': new Audio('audioFile/mj.wav'),
+    'top-right': new Audio('audioFile/pr.wav'),
+    'bottom-left': new Audio('audioFile/wunna.wav'),
+    'bottom-right': new Audio('audioFile/burna.wav')
+};
+
 // Function to get a random panel from the array
 function getRandomPanel() {
     return panels[Math.floor(Math.random() * panels.length)];
@@ -26,7 +34,7 @@ function flash(panel) {
             panel.className = panel.className.replace('active', ''); // Remove 'active' class
             setTimeout(function() {
                 resolve(); // Resolve promise after short delay
-            }, 300);
+            }, 1000);
         }, 1000); // Flash panel for 1 second
     });
 }
@@ -34,6 +42,11 @@ function flash(panel) {
 // Function to handle panel clicks by the user
 function clicked(clicked) {
     if (!canClick) return;
+    
+    // Play the associated sound when a panel is clicked
+    const panelId = clicked.classList[1]; // Assuming the class name is the panel ID
+    panelSounds[panelId].play();
+
     const truePanel = guessedSequence.shift();
     if (truePanel === clicked) {
         if (guessedSequence.length === 0) {
@@ -52,6 +65,9 @@ function clicked(clicked) {
         score = 0; // Reset the score when the game ends
         const scoreText = document.querySelector('#score-text');
         scoreText.textContent = `Score: ${score}`;
+        startButton.textContent = 'Restart Game'; // Change start button text to "Restart Game"
+        startButton.removeEventListener('click', startGame); // Remove previous event listener
+        startButton.addEventListener('click', startGame); // Add event listener to restart the game
     }
 }
 
@@ -65,9 +81,10 @@ async function flashing() {
 }
 
 // Function to start the game
-function startGame() {  
-    flashing();
+function startGame() {
+    flashing(); // Start the initial sequence flashing
 }
+
 // Get the start button element
 const startButton = document.getElementById('start-btn');
 
@@ -84,11 +101,11 @@ resetButton.addEventListener('click', function() {
 
 //*// Allow users to click on the panels to mimic the computer's sequence.
 //*// Verify Player Input: Compare the player's input sequence with the computer's sequence to determine if it matches.
-// Score Tracking: Keep track of the player's score based on the number of successful rounds completed.
-// Increment Difficulty: Increase the difficulty as the player progresses by adding more panels to the sequence or decreasing the time between flashes.
-// Game Over Handling: Implement logic to handle game over scenarios, such as when the player makes a mistake.
-// Restart Game: Provide an option for the player to restart the game after it ends.
-// Visual Feedback: Add visual feedback to indicate when the player's input is correct or incorrect.
+//*// Score Tracking: Keep track of the player's score based on the number of successful rounds completed.
+//*// Increment Difficulty: Increase the difficulty as the player progresses by adding more panels to the sequence or decreasing the time between flashes.
+//*// Game Over Handling: Implement logic to handle game over scenarios, such as when the player makes a mistake.
+//*// Restart Game: Provide an option for the player to restart the game after it ends.
+//*// Visual Feedback: Add visual feedback to indicate when the player's input is correct or incorrect.
 // Sound Effects: Include sound effects for each panel flash and for game events such as correct or incorrect inputs.
 // Game Instructions: Display instructions or a tutorial to guide players on how to play the game.
 // Responsive Design: Ensure the game interface is responsive and works well on different devices and screen sizes.

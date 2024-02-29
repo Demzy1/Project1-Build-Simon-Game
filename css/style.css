@@ -60,7 +60,7 @@ header {
 }
 
 /* Active panel style */
-.active {
+#active {
     background-color: aquamarine;
 }
 
