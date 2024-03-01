@@ -23,7 +23,7 @@ You can play Simon Game by visiting the deployed version [https://demzy1.github.
 ## Upcoming Features
 
 - Option to increase difficulty by adding more panels or decreasing flash duration.
-- Customizable sound effects for a personalized gaming experience.
+
 
 ## Challenge for The day
 Guess the names of the four artist used for each panel.
